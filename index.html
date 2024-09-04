@@ -1,17 +1,131 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>body {
-background-color: #f04c4c;
-}</style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAW II</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        
+        @font-face {
+        font-family: 'Eurostile';
+        src: url('/assets/fonts/eurostile.woff2') format('woff2'),
+             url('/assets/fonts/eurostile.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        }
 
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: 'Eurostile', 'Roboto', sans-serif; /* Fallback font */
+        }
+        .timer-container {
+            background-color: #666630;
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 0 3px #f0f0f0, 0 0 0 6px #666630;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 200px;
+        }
+        .timer {
+            font-size: 4vw;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+        .timer span {
+            flex: 1;
+            text-align: center;
+        }
+        .labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 2vw;
+            padding: 0 5%;
+        }
+        .labels span {
+            flex: 1;
+            text-align: center;
+        }
+        .pie-chart {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+        }
+        @media (min-width: 768px) {
+            .timer { font-size: 48px; }
+            .labels { font-size: 14px; }
+        }
+    </style>
+</head>
 <body>
-    <div align="center">
-    <audio controls>
-        <source src="assets/1969.ogg" type="audio/ogg">
-        <source src="assets/1969.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-      </audio> 
+    <div class="timer-container">
+        <div class="timer" id="timer">
+            <span>00</span>:<span>00</span>:<span>00</span>:<span>00</span>
+        </div>
+        <div class="labels">
+            <span>DAYS</span>
+            <span>HOURS</span>
+            <span>MINUTES</span>
+            <span>SECONDS</span>
+        </div>
+        <img src="assets/chart.png" alt="Pie Chart" class="pie-chart">
     </div>
+
+    <script>
+        function getNextOctober4th() {
+            const now = new Date();
+            let year = now.getFullYear();
+            let october4th = new Date(year, 9, 4);
+            
+            if (now > october4th) {
+                october4th.setFullYear(year + 1);
+            }
+            
+            return october4th;
+        }
+
+        const countDownDate = getNextOctober4th().getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const timerElement = document.getElementById("timer");
+            timerElement.children[0].textContent = days.toString().padStart(2, '0');
+            timerElement.children[1].textContent = hours.toString().padStart(2, '0');
+            timerElement.children[2].textContent = minutes.toString().padStart(2, '0');
+            timerElement.children[3].textContent = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                timerElement.innerHTML = "It's October 4th!";
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
+</html>
