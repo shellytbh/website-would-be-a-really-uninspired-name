@@ -82,21 +82,84 @@
             .timer { font-size: 48px; }
             .labels { font-size: 14px; }
         }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: 'Eurostile', 'Roboto', sans-serif; /* Fallback font */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: white;
+            color: #666630;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 0 0 3px #f0f0f0, 0 0 0 6px #666630;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a:hover {
+            background-color: #666630;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            color: #666630;
+            font-size: 14px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #f0f0f0; /* To match the background color */
+        }
     </style>
 </head>
 <body>
-    <div class="timer-container">
-        <div class="timer" id="timer">
-            <span>00</span>:<span>00</span>:<span>00</span>:<span>00</span>
+    <div class="container">
+        <div class="timer-container">
+            <div class="timer" id="timer">
+                <span>00</span>:<span>00</span>:<span>00</span>:<span>00</span>
+            </div>
+            <div class="labels">
+                <span>DAYS</span>
+                <span>HOURS</span>
+                <span>MINUTES</span>
+                <span>SECONDS</span>
+            </div>
+            <img src="assets/chart.svg" alt="Pie Chart" class="pie-chart">
         </div>
-        <div class="labels">
-            <span>DAYS</span>
-            <span>HOURS</span>
-            <span>MINUTES</span>
-            <span>SECONDS</span>
+
+        <div class="button-container">
+            <a href="https://aphextwin.ffm.to/saw-ii" target="_blank">PRESAVE/PREORDER</a>
         </div>
-        <img src="assets/chart.svg" alt="Pie Chart" class="pie-chart">
     </div>
+
+    <div class="footer">
+        Made by Shelly. Not affiliated with Warp/AFX.<br>Selected Ambient Works Volume II (Expanded Edition) releases October 4.
+    </div>
+
 
     <script>
         function getNextOctober4th() {
