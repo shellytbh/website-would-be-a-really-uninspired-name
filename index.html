@@ -225,44 +225,48 @@
             return october4th;
         }
 
-        const countDownDate = getNextOctober4th().getTime();
+        // Set the target date to October 4, 2024
+        const targetDate = new Date(2024, 9, 4).getTime();
 
         function updateTimer() {
             const now = new Date().getTime();
-            const distance = countDownDate - now;
+            const distance = targetDate - now;
 
+            const timerElement = document.getElementById("timer");
+            const labelsElement = document.querySelector(".labels");
+    
+            if (distance < 0) {
+                // If it's October 4 or later, show "OUT NOW" and hide the timer
+                clearInterval(timerInterval);
+                timerElement.innerHTML = "OUT NOW";
+                timerElement.style.display = "flex";
+                timerElement.style.justifyContent = "center";
+                timerElement.style.alignItems = "center";
+                timerElement.style.fontSize = "4vw"; // Adjust the size as needed
+
+                labelsElement.style.display = "none"; // Hide labels
+                timerContainer.style.flexDirection = "column"; // Ensure vertical centering remains intact
+                return;
+        }
+
+            // If it's still before October 4, calculate and display the countdown
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            const timerElement = document.getElementById("timer");
             timerElement.children[0].textContent = days.toString().padStart(2, '0');
             timerElement.children[1].textContent = hours.toString().padStart(2, '0');
             timerElement.children[2].textContent = minutes.toString().padStart(2, '0');
             timerElement.children[3].textContent = seconds.toString().padStart(2, '0');
-
-            if (distance < 0) {
-                clearInterval(timerInterval);
-                timerElement.innerHTML = "It's October 4th!";
-            }
-        }
-
-        function alternateTitle() {
-        const daysRemaining = Math.floor((countDownDate - new Date().getTime()) / (1000 * 60 * 60 * 24));
-        const originalTitle = "SAW II";
-        const daysTitle = `${daysRemaining} DAYS`;
-
-        let toggle = true;
-        setInterval(() => {
-            document.title = toggle ? originalTitle : daysTitle;
-            toggle = !toggle;
-        }, 5000); // Switches the title every 5 seconds
     }
 
-        const timerInterval = setInterval(updateTimer, 1000);
-        updateTimer();
-        alternateTitle();
+// Set the interval to update the timer every second
+const timerInterval = setInterval(updateTimer, 1000);
+
+// Initial call to display the timer
+updateTimer();
+
 
         // Modal functionality
         const modal = document.getElementById("videoModal");
