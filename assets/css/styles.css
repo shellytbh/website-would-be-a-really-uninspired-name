@@ -1,6 +1,3 @@
-@import url('/assets/fonts/ABCConnectMono-Nail-Trial.woff');
-@import url('/assets/fonts/ABCConnectMono-Nail-Trial.woff2');
-
 @font-face {
     font-family: 'ABC Connect Mono Nail';
     src: url('/assets/fonts/ABCConnectMono-Nail-Trial.woff2') format('woff2'),
@@ -19,6 +16,7 @@ body {
     background-image: url(/assets/images/background.png);
     background-repeat: repeat;
     background-size: cover;
+    font-family: 'ABC Connect Mono Nail', sans-serif;
 }
 
 .image-container {
@@ -40,15 +38,51 @@ img:hover {
     filter: hue-rotate(360deg) saturate(500%);
 }
 
-h1 {
-    font-family: 'ABC Connect Mono Nail', sans-serif;
-    font-size: 3rem;
-    color: #ff1b27;
-    text-align: center;
-    padding-bottom: 10%;
+.top-right-square {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #ff1b27;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 24px;
+    transition: filter 0.3s ease;
 }
 
-h1:hover {
-    transition: filter 0.8s ease;
-    filter: drop-shadow(0 0 0.75rem #ff1b27);
+.top-right-square:hover {
+    filter: hue-rotate(360deg) saturate(500%);
+}
+
+.links-container {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #ff1b27;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.links-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.links-container li {
+    margin-bottom: 10px;
+}
+
+.links-container a {
+    text-decoration: none;
+    color: white;
+}
+
+.links-container a:hover {
+    text-decoration: underline;
 }
