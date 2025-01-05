@@ -1,0 +1,54 @@
+@import url('/assets/fonts/ABCConnectMono-Nail-Trial.woff');
+@import url('/assets/fonts/ABCConnectMono-Nail-Trial.woff2');
+
+@font-face {
+    font-family: 'ABC Connect Mono Nail';
+    src: url('/assets/fonts/ABCConnectMono-Nail-Trial.woff2') format('woff2'),
+         url('/assets/fonts/ABCConnectMono-Nail-Trial.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(/assets/images/background.png);
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+}
+
+img {
+    display: block;
+    margin: auto;
+    width: 50%;
+    transition: filter 0.3s ease;
+}
+
+img:hover {
+    filter: hue-rotate(360deg) saturate(500%);
+}
+
+h1 {
+    font-family: 'ABC Connect Mono Nail', sans-serif;
+    font-size: 3rem;
+    color: #ff1b27;
+    text-align: center;
+    padding-bottom: 10%;
+}
+
+h1:hover {
+    transition: filter 0.8s ease;
+    filter: drop-shadow(0 0 0.75rem #ff1b27);
+}
